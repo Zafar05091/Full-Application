@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block content %}
+<section class="card composer"><h1>New message</h1><form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<label>To<input type="text" name="to" placeholder="person@gmail.com" value="{{ values.get('to', '') }}" maxlength="3000"></label>
+<label>CC<input type="text" name="cc" placeholder="optional, comma separated" value="{{ values.get('cc', '') }}" maxlength="3000"></label>
+<label>BCC<input type="text" name="bcc" placeholder="optional, comma separated" value="{{ values.get('bcc', '') }}" maxlength="3000"></label>
+<label>Subject<input name="subject" required maxlength="255" value="{{ values.get('subject', '') }}"></label>
+<label>Message<textarea name="body" rows="12" required maxlength="100000">{{ values.get('body', '') }}</textarea></label>
+<div class="actions"><button class="primary" name="action" value="send">Send via SES</button><button name="action" value="draft">Save draft</button></div></form></section>{% endblock %}
