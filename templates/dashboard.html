@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block content %}
+<div class="layout"><nav class="card"><a class="primary linkbutton" href="{{ url_for('compose') }}">＋ Compose</a><a href="{{ url_for('dashboard', folder='sent') }}">Sent</a><a href="{{ url_for('dashboard', folder='draft') }}">Drafts</a><span class="muted">Inbox (coming later)</span></nav>
+<section class="card messages"><h1>{{ folder|capitalize }}</h1>
+{% for message in messages %}<article><strong>{{ message.subject }}</strong><small>{{ message.recipients }}</small><p>{{ message.body[:160] }}</p><small>{{ message.created_at.strftime('%Y-%m-%d %H:%M') }} UTC</small></article>
+{% else %}<p class="muted">No {{ folder }} messages yet.</p>{% endfor %}</section></div>{% endblock %}
